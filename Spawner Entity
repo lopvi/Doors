@@ -273,10 +273,6 @@ Creator.runEntity = function(entity)
                         entity.Model:SetAttribute("StopMovement", true)
 			local effect = game:GetObjects("rbxassetid://11555754461")[1]
 	   effect.Parent = game.Workspace
-	   local HandCFrame = game.Players.LocalPlayer.Character.RightHand.CFrame
-local Crucifix2 = game:GetObjects("rbxassetid://11498423088")[1] Crucifix.Parent = workspace
-Crucifix2.Handle:PivotTo(HandCFrame)
-game.Players.LocalPlayer.Character.Crucifix:Destroy()
 	   effect:PivotTo(entity.Model.RushNew.CFrame - Vector3.new(0,3,0))
 	   effect.Chain1.Attachment:FindFirstChildOfClass("Beam").Attachment1 = entity.Model.RushNew.Attachment
 	   effect.Chain2.Attachment:FindFirstChildOfClass("Beam").Attachment1 = entity.Model.RushNew.Attachment
