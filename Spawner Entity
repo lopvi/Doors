@@ -271,9 +271,6 @@ Creator.runEntity = function(entity)
                         Connections[entity.Model].Movement:Disconnect()
                         Connections[entity.Model].Drag:Disconnect()
                         entity.Model:SetAttribute("StopMovement", true)
-			local effect = game:GetObjects("rbxassetid://11555754461")[1]
-	   effect.Parent = game.Workspace
-	   effect:PivotTo(entity.Model.RushNew.CFrame - Vector3.new(0,3,0))
 	    dupeCrucifix.Event:Connect(function(time, entityRoot)
             local Cross = game:GetObjects("rbxassetid://11656343590")[1]
             Cross.Parent = workspace
@@ -323,6 +320,7 @@ Creator.runEntity = function(entity)
            ts:Create(entity.Model.RushNew,TweenInfo.new(2, Enum.EasingStyle.Sine,Enum.EasingDirection.In),{CFrame = entity.Model.RushNew.CFrame + Vector3.new(0,20,0)}):Play()
            wait(2)
 									
+	   
 	   effect:Destroy()
 	   entity.Model:Destroy()
                         if doggo then
