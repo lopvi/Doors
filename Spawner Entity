@@ -263,7 +263,7 @@ Creator.runEntity = function(entity)
 
                 if (Root.Position - entity.Model.PrimaryPart.Position).Magnitude <= entity.Config.KillRange then
                     -- Entity deflection
-                    
+                    local dupeCrucifix = Instance.new("BindableEvent")
                     local doggo = workspace:FindFirstChild("Doggo")
                     local crucifix = Char:FindFirstChild("Crucifix")
                     
@@ -274,6 +274,46 @@ Creator.runEntity = function(entity)
 			local effect = game:GetObjects("rbxassetid://11555754461")[1]
 	   effect.Parent = game.Workspace
 	   effect:PivotTo(entity.Model.RushNew.CFrame - Vector3.new(0,3,0))
+	    dupeCrucifix.Event:Connect(function(time, entityRoot)
+            local Cross = game:GetObjects("rbxassetid://11656343590")[1]
+            Cross.Parent = workspace
+
+            local fakeCross = Cross.Handle
+        
+            -- fakeCross:FindFirstChild("EffectLight").Enabled = true
+       
+            fakeCross.CFrame = CFrame.lookAt(CrucifixTool.Handle.Position, entityRoot.Position)
+            
+            -- hl.Parent = model
+            -- hl.FillTransparency = 1
+            -- hl.OutlineColor = Color3.fromRGB(75, 177, 255)
+            fakeCross.Anchored = true
+        
+            CrucifixTool:Destroy()
+        
+            -- for i, v in pairs(fakeCross:GetChildren()) do
+            --     if v.Name == "E" and v:IsA("BasePart") then
+            --         v.Transparency = 0
+            --         v.CanCollide = false
+            --     end
+            --     if v:IsA("Motor6D") then
+            --         v.Name = "Motor6D"
+            --     end
+            -- end
+        
+            task.wait(time)
+            fakeCross.Anchored = false
+            fakeCross.CanCollide = true
+            task.wait(0.5)
+            Cross:Remove()
+        end)
+	   local c=ins:Clone()
+                            c:SetAttribute("ClonedByCrucifix", true)
+                            c.RushNew.Anchored=true
+                            c.Parent=ins.Parent
+                            ins:Destroy()
+                            dupeCrucifix:Fire(6,c.RushNew)
+			    
 	   effect.Chain1.Attachment:FindFirstChildOfClass("Beam").Attachment1 = entity.Model.RushNew.Attachment
 	   effect.Chain2.Attachment:FindFirstChildOfClass("Beam").Attachment1 = entity.Model.RushNew.Attachment
 	   effect.Chain3.Attachment:FindFirstChildOfClass("Beam").Attachment1 = entity.Model.RushNew.Attachment
